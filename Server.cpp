@@ -68,10 +68,10 @@ int main()
 
     closesocket(ListenSocket);
 
-   /* char message[DEFAULT_BUFLEN];
+    char message[DEFAULT_BUFLEN];
     char response[DEFAULT_BUFLEN];
 
-    while (true) {
+    /*while (true) {
         ZeroMemory(message, DEFAULT_BUFLEN);
         iResult = recv(ClientSocket, message, DEFAULT_BUFLEN, 0);
 
@@ -100,9 +100,6 @@ int main()
             break;
         }
     }*/
-
-    char message[DEFAULT_BUFLEN];
-    char response[DEFAULT_BUFLEN];
 
     while (true) {
         ZeroMemory(message, DEFAULT_BUFLEN);
