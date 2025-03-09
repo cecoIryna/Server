@@ -68,7 +68,7 @@ int main()
 
     closesocket(ListenSocket);
 
-    char message[DEFAULT_BUFLEN];
+   /* char message[DEFAULT_BUFLEN];
     char response[DEFAULT_BUFLEN];
 
     while (true) {
@@ -99,7 +99,37 @@ int main()
             cout << "Помилка або розрив з'єднання.\n";
             break;
         }
+    }*/
+
+    char message[DEFAULT_BUFLEN];
+    char response[DEFAULT_BUFLEN];
+
+    while (true) {
+        ZeroMemory(message, DEFAULT_BUFLEN);
+        iResult = recv(ClientSocket, message, DEFAULT_BUFLEN, 0);
+
+        if (iResult > 0) {
+            message[iResult] = '\0';
+            cout << "Клієнт надіслав: " << message << "\n";
+
+            if (strcmp(message, "exit") == 0) {
+                cout << "Клієнт завершив роботу.\n";
+                break;
+            }
+
+       
+            int num = atoi(message);
+            num++; 
+
+            _itoa_s(num, response, 10);
+            send(ClientSocket, response, (int)strlen(response), 0);
+        }
+        else {
+            cout << "Помилка або розрив з'єднання.\n";
+            break;
+        }
     }
+
 
     closesocket(ClientSocket);
     WSACleanup();
